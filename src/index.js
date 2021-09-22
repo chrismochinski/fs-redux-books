@@ -10,6 +10,9 @@ import * as serviceWorker from './serviceWorker';
 
 const bookList = (state = [], action) => {
   // TODO - set book list with data from server
+  if (action.type === 'SET_BOOK_LIST') {
+    return action.payload;
+  }
   return state;
 }
 
@@ -21,7 +24,8 @@ const reduxStore = createStore(
 );
 
 
-ReactDOM.render(<Provider store={reduxStore}><App /></Provider>, document.getElementById('root'));
+ReactDOM.render(
+<Provider store={reduxStore}><App /></Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

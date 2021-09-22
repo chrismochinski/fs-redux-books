@@ -1,16 +1,24 @@
 import {useState} from 'react';
+import axios from 'axios';
 
-function BookForm() {
+function BookForm({ fetchBookList }) {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
 
+
+  // TODO - axios request to server to add book
+
   const handleSubmit = event => {
     event.preventDefault();
-
     console.log(`Adding book`, {title, author});
-
-    // TODO - axios request to server to add book
-
+    axios({ 
+      method: 'POST',
+      url: '/books',
+      data: { title: title, author: author},
+    }).then(response => {
+        //getBookList function...props from app.js simple!
+        fetchBookList();
+    })
   };
 
   return (
